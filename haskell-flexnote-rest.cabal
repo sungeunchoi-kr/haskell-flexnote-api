@@ -17,3 +17,18 @@ executable flexnote-rest
   main-is:             Main.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+                     , process
+                     , wai-cors
+                     , wai-middleware-static
+                     , aeson
+                     , scotty
+                     , scotty-tls
+                     , time
+                     , bytestring
+                     , text
+                     , containers
+                     , mtl
+                     , directory
+                     , http-types
+                     , uid
+
