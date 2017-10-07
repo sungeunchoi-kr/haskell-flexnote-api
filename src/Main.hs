@@ -32,7 +32,8 @@ f :: String -> Memo -> MemoM
 f s m = MemoM {uid=s, memo=m}
 
 get_data_dir :: IO (String)
-get_data_dir = fmap (++"/data/") getCurrentDirectory
+--get_data_dir = fmap (++"/data/") getCurrentDirectory
+get_data_dir = do return "/home/sung/projs/current/haskell-flexnote-rest/data/"
 
 make_memo_fpath :: String -> IO (String)
 make_memo_fpath uid = (++uid) <$> get_data_dir
