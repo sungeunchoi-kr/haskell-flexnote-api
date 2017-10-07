@@ -1,0 +1,6 @@
+.stack-work
+LICENSE
+data
+*.swp
+*.hi
+*.o

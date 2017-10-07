@@ -110,6 +110,14 @@ put_v1_memos = do
     _ <- liftIO $ memo_write uid (title m) (content m)
     Scotty.json $ object [ "content" .= ((content m)::String), "title" .= ((title m)::String) ]
 
+delete_v1_memos :: Scotty.ActionM()
+delete_v1_memos = do
+    uid :: String <- Scotty.param "uid"
+    fpath <- liftIO (make_memo_fpath uid)
+    _ <- liftIO (removeFile fpath)
+    Scotty.json $ object [ "deleted" .= (uid::String) ]
+    
+
 routes :: Scotty.ScottyM ()
 routes = do
     Scotty.middleware simpleCors
@@ -120,6 +128,7 @@ routes = do
     Scotty.get "/v1/memos" list_v1_memos
     Scotty.get "/v1/memos/:uid" get_v1_memos
     Scotty.put "/v1/memos/:uid" put_v1_memos
+    Scotty.delete "/v1/memos/:uid" delete_v1_memos
 
 main = Scotty.scotty 8081 routes
 
